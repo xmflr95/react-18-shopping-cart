@@ -14,3 +14,12 @@
 4. create Product component
     1. create product divs
     2. pass props to product component
+
+## Start
+
+### `npm install`
+
+### `npm start` or `yarn start`
+
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
