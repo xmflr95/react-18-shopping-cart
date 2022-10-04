@@ -16,17 +16,35 @@ function App() {
         cartItems.map(x => 
           x.id === product.id ? { ...exist, qty : exist.qty + 1 } : x
         )
-      )
+      );
     } else {
       setCartItems([...cartItems, {...product, qty: 1}]);
     }
   }
 
+  const onRemove = (product) => {
+    const exist = cartItems.find((x) => x.id === product.id);
+    if (exist.qty === 1) {
+      // remove
+      setCartItems(cartItems.filter((x) => x.id !== product.id));
+    } else {
+      setCartItems(
+        cartItems.map(x => 
+          x.id === product.id ? { ...exist, qty : exist.qty - 1 } : x
+        )
+      );
+    }
+  };
+
   return <div>
-    <Header></Header>
+    <Header countCartItems={cartItems.length}></Header>
     <div className='row'>
       <Main onAdd={onAdd} products={products} />
-      <Basket onAdd={onAdd} cartItems={cartItems}></Basket>
+      <Basket 
+        onAdd={onAdd} 
+        onRemove={onRemove} 
+        cartItems={cartItems}
+      ></Basket>
     </div>
   </div>;
 }
